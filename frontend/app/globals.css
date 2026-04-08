@@ -1,13 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --ou-red: #841719;
-  --ou-cream: #efe5c7;
-  --ou-ink: #111111;
-  --ou-muted: #4b5563;
+  --ou-red: #982b2f;
+  --ou-red-deep: #7a1f24;
+  --ou-gold: #c69a55;
+  --ou-cream: #f3ebdc;
+  --ou-paper: #fffaf2;
+  --ou-panel: rgba(255, 250, 242, 0.86);
+  --ou-panel-strong: #fffdf8;
+  --ou-ink: #211915;
+  --ou-muted: #6c5d53;
+  --ou-line: rgba(92, 62, 42, 0.16);
+  --ou-shadow: 0 20px 60px rgba(71, 41, 31, 0.12);
 
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--ou-cream);
+  --foreground: var(--ou-ink);
 }
 
 @theme inline {
@@ -21,20 +28,54 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ou-cream);
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  margin: 0;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(198, 154, 85, 0.26), transparent 28rem),
+    radial-gradient(circle at top right, rgba(152, 43, 47, 0.12), transparent 26rem),
+    linear-gradient(180deg, #f8f2e7 0%, #f2e8d8 48%, #efe3d1 100%);
 }
 
-/* Ensure form inputs are always high-contrast while typing */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.24), transparent 40%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(122, 31, 36, 0.015) 0,
+      rgba(122, 31, 36, 0.015) 10px,
+      transparent 10px,
+      transparent 22px
+    );
+  opacity: 0.75;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
 input,
 textarea,
 select {
@@ -43,5 +84,111 @@ select {
 
 input::placeholder,
 textarea::placeholder {
-  color: color-mix(in srgb, var(--ou-ink) 55%, transparent);
+  color: color-mix(in srgb, var(--ou-muted) 78%, transparent);
+}
+
+.app-page {
+  position: relative;
+}
+
+.app-panel {
+  border: 1px solid var(--ou-line);
+  background: var(--ou-panel);
+  box-shadow: var(--ou-shadow);
+  backdrop-filter: blur(14px);
+}
+
+.app-panel-strong {
+  border: 1px solid var(--ou-line);
+  background: var(--ou-panel-strong);
+  box-shadow: var(--ou-shadow);
+}
+
+.app-border {
+  border-color: var(--ou-line);
+}
+
+.app-text-muted {
+  color: var(--ou-muted);
+}
+
+.app-button-primary {
+  border: 1px solid transparent;
+  background: linear-gradient(180deg, var(--ou-red) 0%, var(--ou-red-deep) 100%);
+  color: white;
+  box-shadow: 0 12px 28px rgba(122, 31, 36, 0.22);
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    opacity 140ms ease;
+}
+
+.app-button-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(122, 31, 36, 0.28);
+}
+
+.app-button-secondary {
+  border: 1px solid var(--ou-line);
+  background: rgba(255, 253, 248, 0.92);
+  color: var(--ou-ink);
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.app-button-secondary:hover {
+  transform: translateY(-1px);
+  border-color: rgba(122, 31, 36, 0.28);
+  background: rgba(255, 250, 242, 1);
+}
+
+.app-button-ghost {
+  color: var(--ou-red-deep);
+  transition: color 140ms ease, opacity 140ms ease;
+}
+
+.app-button-ghost:hover {
+  opacity: 0.8;
+}
+
+.app-input {
+  border: 1px solid var(--ou-line);
+  background: rgba(255, 255, 255, 0.72);
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease;
+}
+
+.app-input:focus {
+  outline: none;
+  border-color: rgba(152, 43, 47, 0.42);
+  box-shadow: 0 0 0 4px rgba(152, 43, 47, 0.09);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.app-badge {
+  border: 1px solid var(--ou-line);
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--ou-muted);
+}
+
+.app-badge-strong {
+  border: 1px solid rgba(122, 31, 36, 0.18);
+  background: rgba(152, 43, 47, 0.1);
+  color: var(--ou-red-deep);
+}
+
+.app-badge-going {
+  border: 1px solid rgba(122, 31, 36, 0.1);
+  background: linear-gradient(180deg, var(--ou-red) 0%, var(--ou-red-deep) 100%);
+  color: white;
+}
+
+.app-badge-muted {
+  border: 1px solid var(--ou-line);
+  background: rgba(33, 25, 21, 0.05);
+  color: var(--ou-ink);
 }

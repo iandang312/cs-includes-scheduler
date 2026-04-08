@@ -74,6 +74,35 @@ export type EventListItem = {
   capacity: number | null;
 };
 
+export type MyRsvp = {
+  eventId: string;
+  status: "going" | "not_going";
+};
+
+export type GoogleCalendarEvent = {
+  id: string;
+  title: string;
+  description: string | null;
+  startAt: string;
+  endAt: string | null;
+  location: string | null;
+  htmlLink: string | null;
+  status: string;
+};
+
+export type GoogleCalendarFeed = {
+  enabled: boolean;
+  connected: boolean;
+  message: string | null;
+  events: GoogleCalendarEvent[];
+};
+
+export type EventAttendee = {
+  userId: string;
+  email: string;
+  displayName: string | null;
+};
+
 export const api = {
   me: () => request<Me>("/me"),
   events: () => request<EventListItem[]>("/events"),
@@ -96,7 +125,9 @@ export const api = {
       method: "POST",
       body: JSON.stringify({ status }),
     }),
-  myRsvps: () => request<{ eventId: string; status: "going" | "not_going" }[]>("/me/rsvps"),
+  myRsvps: () => request<MyRsvp[]>("/me/rsvps"),
+  googleCalendar: () => request<GoogleCalendarFeed>("/calendar/google"),
+  attendees: (id: string) => request<EventAttendee[]>(`/events/${encodeURIComponent(id)}/attendees`),
   auth: {
     login: (email: string, password: string) =>
       request<{ ok: true }>("/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }),

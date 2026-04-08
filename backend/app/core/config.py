@@ -12,8 +12,9 @@ class Settings(BaseSettings):
     session_ttl_seconds: int = 60 * 60 * 24 * 7  # 7 days
 
     admin_emails: str = ""
-    # (Microsoft SSO removed; keeping config minimal)
+    google_calendar_api_key: str = ""
+    google_calendar_id: str = ""
+    google_calendar_max_results: int = 12
 
 
 settings = Settings()
-

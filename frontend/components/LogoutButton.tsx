@@ -9,7 +9,7 @@ export function LogoutButton() {
     <button
       type="button"
       disabled={pending}
-      className="inline-flex h-10 items-center justify-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-[color:var(--ou-ink)] transition hover:bg-black/5 disabled:opacity-60"
+      className="app-button-secondary inline-flex h-10 items-center justify-center rounded-xl px-4 text-sm font-semibold disabled:opacity-60"
       onClick={() => {
         start(async () => {
           await api.auth.logout();
@@ -17,8 +17,7 @@ export function LogoutButton() {
         });
       }}
     >
-      {pending ? "Signing out…" : "Sign out"}
+      {pending ? "Signing out..." : "Sign out"}
     </button>
   );
 }
-

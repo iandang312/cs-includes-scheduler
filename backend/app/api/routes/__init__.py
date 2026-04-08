@@ -1,3 +1,2 @@
-from app.api.routes import admin, auth, events, me  # noqa: F401
-
+from app.api.routes import admin, auth, calendar, events, me  # noqa: F401
 

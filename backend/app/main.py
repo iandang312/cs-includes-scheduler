@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.api.routes import admin, auth, events, me
+from app.api.routes import admin, auth, calendar, events, me
 
 
 def create_app() -> FastAPI:
@@ -18,6 +18,7 @@ def create_app() -> FastAPI:
 
     app.include_router(auth.router)
     app.include_router(me.router)
+    app.include_router(calendar.router)
     app.include_router(events.router)
     app.include_router(admin.router)
 
@@ -29,4 +30,3 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-
