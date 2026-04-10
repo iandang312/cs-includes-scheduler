@@ -33,9 +33,6 @@ export default function LoginPage() {
               <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/85">
                 Private RSVPs
               </span>
-              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/85">
-                Admin roles
-              </span>
             </div>
           </section>
 

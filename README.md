@@ -27,8 +27,12 @@ docker compose --profile frontend up --build
 
 Frontend: `http://localhost:3000`
 
+## Google Calendar Feed
+- Set `GOOGLE_CALENDAR_ID` and `GOOGLE_CALENDAR_API_KEY` in the repo-root `.env`.
+- Signed-in mentors and mentees will see upcoming events from that calendar on the dashboard.
+- This is a read-only feed. If the calendar is private or the API key cannot access it, the dashboard will show a configuration error instead of live events.
+
 ## Roles
 - **Admin**: set by `ADMIN_EMAILS` (comma-separated). On first login, matching emails are assigned Admin.\n
 - **Mentor**: admins can promote via `/admin/users` UI.\n
 - **Mentee**: default.
-
